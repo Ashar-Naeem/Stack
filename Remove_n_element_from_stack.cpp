@@ -1,7 +1,7 @@
 
-/// Check max element in the stack
+
+/// Remove n element from the stack
 #include <iostream>
-#include <climits>
 using namespace std;
 
 class Stack_i
@@ -25,38 +25,29 @@ public:
         return false;
     }
 
-    int checkMax()
+    void removeElement(int element)
     {
-        if (top == -1)
+        if(top==-1)
         {
-            cout << "Empty Stack";
-            return -1;
+            cout << "Stack is Empty\n";
+            return;
         }
-
         Stack_i temp;
-        int max = INT_MIN;
-
-        // Check all elements using pop
-        while (!isEmpty())
+        while(!isEmpty())
         {
-            int value = pop();
 
-            if (value > max)
+            int value=pop();
+            if(value==element)
             {
-                max = value;
+                break;
             }
 
             temp.push(value);
         }
-
-        // Restore original stack
-        while (!temp.isEmpty())
+        while(!temp.isEmpty())
         {
-            int value = temp.pop();
-            push(value);
+            push(temp.pop());
         }
-
-        return max;
     }
 
     int getTop()
@@ -141,7 +132,7 @@ int main()
     cout << "Original Stack: ";
     s1.display();
 
-    cout << "Maximum: " << s1.checkMax() << endl;
+    s1.removeElement(44);
 
     cout << "Stack after checkMax: ";
     s1.display();
