@@ -23,7 +23,7 @@ public:
         return false;
     }
 
-    void removeRedElement(string element)
+    void removeRedElement()
     {
         if(top==-1)
         {
@@ -35,7 +35,7 @@ public:
         {
 
             string value=pop();
-            if(value==element)
+            if(value=="red")
             {
                 break;
             }
@@ -96,25 +96,36 @@ public:
 
         cout << "Top value is: " << arr[top] << endl;
     }
-
     void display()
     {
-        if (top == -1)
+        if (isEmpty())
         {
-            cout << "Stack is empty." << endl;
+            cout << "Stack is Empty\n";
+            return;
         }
-        else
+
+        Stack_i temp;
+
+        cout << "Stack : ";
+
+        while (!isEmpty())
         {
-            cout << "Stack: ";
+            string value = pop();
 
-            for (int i = top; i >= 0; i--)
-            {
-                cout << arr[i] << " ";
-            }
+            cout << value << " ";
 
-            cout << endl;
+            temp.push(value);
         }
+
+        while (!temp.isEmpty())
+        {
+            push(temp.pop());
+        }
+
+        cout << endl;
     }
+
+
 };
 int main()
 {
@@ -126,7 +137,6 @@ int main()
     s1.push("blue");
     s1.push("red");
     s1.push("orange");
-    s1.removeRedElement("red");
     s1.display();
     return 0;
 }
